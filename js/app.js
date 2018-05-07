@@ -1,17 +1,19 @@
-/*
- * Create a list that holds all of your cards
- */
- var cardslist = ["fa fa-diamond","fa fa-paper-plane-o","fa fa-anchor",
-                 "fa fa-bolt","fa fa-cube","fa fa-anchor",
-                 "fa fa-leaf","fa fa-bicycle","fa fa-diamond",
-                 "fa fa-bomb","fa fa-leaf","fa fa-bomb",
-                 "fa fa-bolt","fa fa-bicycle","fa fa-paper-plane-o","fa fa-cube"]
-// Display the cards on the page
-var opencards = document.getElementsByClassName("card")
 
-function open (){
-  open = document.createElement("card.open")
-}
+//Create a list that holds all of your cards
+// add all of my cards to an Array
+var moves = 0;
+var matched = 0;
+var gamestarted = false;
+var cardcard = document.getElementsByClassName('card')
+var cardlist = Array.from(cardcard)
+
+cardlist.forEach(function (clc, index){
+      clc.addEventListener("click", function(){
+      console.log("you clicked");
+      });
+    });
+//open cards
+
 
 // - shuffle the list of cards using the provided "shuffle" method below
 // loop through each card and create its HTML
@@ -19,8 +21,8 @@ function open (){
 
 
 // Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+function shuffle(cardlist) {
+    var currentIndex = cardlist.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
@@ -32,6 +34,8 @@ function shuffle(array) {
 
     return array;
 }
+
+opencard = []
 
 
 
