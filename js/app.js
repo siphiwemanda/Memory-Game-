@@ -6,14 +6,42 @@ var matched = 0;
 var gamestarted = false;
 var cardcard = document.getElementsByClassName('card')
 var cardlist = Array.from(cardcard)
+opencard = []
 
-cardlist.forEach(function (clc, index){
-      clc.addEventListener("click", function(){
-      console.log("you clicked");
+cardlist.forEach(function (x, getPosition, event){
+      x.addEventListener("click", function(){
+        console.log("you clicked" + getPosition);
+        var p=getPosition;
+        document.getElementsByClassName('card')
+        [p].setAttribute("class", "card open show");
+
       });
     });
-//open cards
+//set the pointer using https://www.kirupa.com/html5/getting_mouse_click_position.htm
+function getPosition(el) {
+  var xPosition = 0;
+  var yPosition = 0;
 
+  while (el) {
+    if (el.tagName == "BODY") {
+      // deal with browser quirks with body/window/document and page scroll
+      var xScrollPos = el.scrollLeft || document.documentElement.scrollLeft;
+      var yScrollPos = el.scrollTop || document.documentElement.scrollTop;
+
+      xPosition += (el.offsetLeft - xScrollPos + el.clientLeft);
+      yPosition += (el.offsetTop - yScrollPos + el.clientTop);
+    } else {
+      xPosition += (el.offsetLeft - el.scrollLeft + el.clientLeft);
+      yPosition += (el.offsetTop - el.scrollTop + el.clientTop);
+    }
+
+    el = el.offsetParent;
+  }
+  return {
+    x: xPosition,
+    y: yPosition
+  };
+}
 
 // - shuffle the list of cards using the provided "shuffle" method below
 // loop through each card and create its HTML
@@ -34,18 +62,6 @@ function shuffle(cardlist) {
 
     return array;
 }
-
-opencard = []
-
-
-
-
-
-
-
-
-
-
 
 /*
  * set up the event listener for a card. If a card is clicked:
