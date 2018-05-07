@@ -63,6 +63,21 @@ function shuffle(cardlist) {
     return array;
 }
 
+
+var cardopen =document.getElementsByClassName('card open show');
+var cardopenarr = Array.from(cardopen);
+
+var cardmatched = document.getElementsByClassName('card match');
+var cardmatcharr = Array.from(cardmatched);
+
+//restart button
+
+document.getElementsByClassName("fa fa-repeat").addEventListener('click', restartfunction);
+
+function restartfunction(){
+  return console.log('this is a restart');
+
+}
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
