@@ -1,22 +1,46 @@
-
-//Create a list that holds all of your cards
-// add all of my cards to an Array
-var moves = 0;
-var matched = 0;
-var gamestarted = false;
+//cardlist
 var cardcard = document.getElementsByClassName('card')
 var cardlist = Array.from(cardcard)
-opencard = []
 
-cardlist.forEach(function (x, getPosition, event){
-      x.addEventListener("click", function(){
-        console.log("you clicked" + getPosition);
-        var p=getPosition;
-        document.getElementsByClassName('card')
-        [p].setAttribute("class", "card open show");
 
-      });
-    });
+//cardlistner function
+cardlist.forEach(listener)
+var p;
+function listener(x, getPosition,event){
+
+    x.addEventListener("click", function(){
+        console.log("you clicked " + getPosition)
+        p = getPosition;
+        showcard(p)
+        });
+};
+
+//showcard function
+function showcard(p){
+
+  document.getElementsByClassName('card')
+        [p].setAttribute("class", "card open show")
+  };
+
+
+//opencards
+var opencards = document.getElementsByClassName('card open show')
+var opencardlist = Array.from(opencards)
+
+function ocardnum (){
+  if (opencardlist[0]=== opencardlist[1])
+  document.getElementsByName('card')[0][1].
+  setAttribute('card match') };
+
+
+
+
+
+
+
+
+
+
 //set the pointer using https://www.kirupa.com/html5/getting_mouse_click_position.htm
 function getPosition(el) {
   var xPosition = 0;
@@ -48,6 +72,7 @@ function getPosition(el) {
  //add each card's HTML to the page
 
 
+
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(cardlist) {
     var currentIndex = cardlist.length, temporaryValue, randomIndex;
@@ -64,20 +89,7 @@ function shuffle(cardlist) {
 }
 
 
-var cardopen =document.getElementsByClassName('card open show');
-var cardopenarr = Array.from(cardopen);
 
-var cardmatched = document.getElementsByClassName('card match');
-var cardmatcharr = Array.from(cardmatched);
-
-//restart button
-
-document.getElementsByClassName("fa fa-repeat").addEventListener('click', restartfunction);
-
-function restartfunction(){
-  return console.log('this is a restart');
-
-}
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
