@@ -23,18 +23,29 @@ function showcard(p){
   };
 
 
+
 //opencards
 var opencards = document.getElementsByClassName('card open show')
 var opencardlist = Array.from(opencards)
+function doumatch(){
+  if (opencardlist[0].getElementsByClassName('card open show')=== opencardlist[1].getElementsByClassName('card open show')){
+      console.lon('you match')
+    //document.getElementsByClassName('card open show')[0]setAttribute('class', 'card match')
+  }
+  else
+      console.log('you dont match ')
 
-function ocardnum (){
-  if (opencardlist[0]=== opencardlist[1])
-  document.getElementsByName('card')[0][1].
-  setAttribute('card match') };
+  //document.getElementsByClassName('className')[1].
+        //setAttribute.('class','card')
+}
+  //for (var i = 0; i <opencardlist; i++) {
+      //if opencardlist[0].getElementsByClassName('card open show') === opencardlist[0].getElementsByClassName('card open show')
 
 
+//opencardlist.forEach(matchyes)
 
-
+//function matchyes (x){
+  //  document.getElementsByName('card')[x].setAttribute('class', 'card match') };
 
 
 
