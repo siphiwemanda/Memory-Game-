@@ -1,9 +1,15 @@
 
 //cardlist
-
+var match=0;
+var moves=0;
 var cardcard = document.getElementsByClassName('card')
 var cardlist = Array.from(cardcard)
 
+
+function Endgame(){
+alert("Congratulations... meep!!");
+
+}
 
 //cardlistner function
 cardlist.forEach(listener)
@@ -13,6 +19,7 @@ function listener(x, getPosition,event){
 
     x.addEventListener("click", function(){
         console.log("you clicked " + getPosition)
+        moves++;
         p = getPosition;
         clicked.push(p);
         showcard(p);
@@ -72,11 +79,20 @@ function doumatch(){
           console.log("meep");
     document.getElementsByClassName('card')
          [clicked[1]].setAttribute("class", "card match");
+match++;
+if(match==8){
+  Endgame();
+
+
+
+}
+
 
 
   }
   else{
       console.log('you dont match ');
+      //Thread.sleep(2000);
       document.getElementsByClassName('card')
             [clicked[0]].setAttribute("class", "card");
             console.log("meep");
