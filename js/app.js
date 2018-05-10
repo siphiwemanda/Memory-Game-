@@ -48,10 +48,7 @@ createopencardlist();
 
 if(clicked.length==2) {
   doumatch();
-document.getElementsByClassName('card')
-      [clicked[0]].setAttribute("class", "card");
-document.getElementsByClassName('card')
-     [clicked[1]].setAttribute("class", "card");
+
 clicked.pop();
 clicked.pop();
    }
@@ -71,22 +68,26 @@ function doumatch(){
 
     //document.getElementsByClassName('card open show')[0]setAttribute('class', 'card match')
     document.getElementsByClassName('card')
-          [clicked[0]].setAttribute("class", "card open show");
+          [clicked[0]].setAttribute("class", "card match");
+          console.log("meep");
     document.getElementsByClassName('card')
-         [clicked[1]].setAttribute("class", "card open show");
+         [clicked[1]].setAttribute("class", "card match");
 
 
   }
   else{
       console.log('you dont match ');
-      cardlist[0].setAttribute("class", "card open show")
+      document.getElementsByClassName('card')
+            [clicked[0]].setAttribute("class", "card");
+            console.log("meep");
+      document.getElementsByClassName('card')
+           [clicked[1]].setAttribute("class", "card");
   //document.getElementsByClassName('className')[1].
         //setAttribute.('class','card')
 }
 
 }
 
-doumatch();
   //for (var i = 0; i <opencardlist; i++) {
       //if opencardlist[0].getElementsByClassName('card open show') === opencardlist[0].getElementsByClassName('card open show')
 
