@@ -19,102 +19,113 @@ function listener(x, getPosition,event){
 
     x.addEventListener("click", function(){
         console.log("you clicked " + getPosition)
-        moves++;
+        increment();
         p = getPosition;
-        clicked.push(p);
         showcard(p);
+        addopencard();
+
 
 
 
         });
-};
+}
 
-var opencards;
-var opencardlist;
 
-function createopencardlist(){
+function score(){
 
-  opencards = document.getElementsByClassName('card open show');
-  opencardlist = Array.from(opencards);
+  if (moves >16) document.getElementsByClassName('fa-star')[2].setAttribute("class", "fa fa-star-o");
+  if (moves >25) document.getElementsByClassName('fa-star')[1].setAttribute("class", "fa fa-star-o");
+  if (moves >50) document.getElementsByClassName('fa-star')[0].setAttribute("class", "fa fa-star-o");
 
 
 }
 
+function increment(){
+  moves++;
+  console.log(moves);
+  var x = document.querySelector('.moves');
+  x.innerText = moves;
+ //score();
+
+}
+
+
+
+//Function to add clicked card to opencard array. If 2 elements in array call function to see if there is a match
+function addopencard(){
+clicked.push(p);
+if(clicked.length==2){
+doumatch();
+
+
+}
+}
+
+//var opencards;
+//var opencardlist;
+
+//function createopencardlist(){
+
+  //opencards = document.getElementsByClassName('card open show');
+  //opencardlist = Array.from(opencards);
+
+
+//}
+
 //showcard function
 function showcard(p){
+  document.getElementsByClassName('card')
+        [p].setAttribute("class", "card open show");}
 
+
+
+function matched(i, j){
 
   document.getElementsByClassName('card')
-        [p].setAttribute("class", "card open show")
-
-        //var opencards = document.getElementsByClassName('card open show');
-        //var opencardlist = Array.from(opencards);
-
-createopencardlist();
-
-
-if(clicked.length==2) {
-  doumatch();
-
-clicked.pop();
-clicked.pop();
-   }
+        [i].classList.add("animated", "jello");
+        console.log("jiggle");
+  document.getElementsByClassName('card')
+       [j].classList.add("animated", "jello");
 
 
 
-  };
+/*document.getElementsByClassName('card')
+      [i].setAttribute("class", "card match");
+      console.log("meep");
+document.getElementsByClassName('card')
+     [j].setAttribute("class", "card match");*/
+match++;
+}
 
+function notmatched(i, j){
+
+
+    document.getElementsByClassName('card')
+        [i].setAttribute("class", "card");
+        console.log("meep");
+  document.getElementsByClassName('card')
+       [j].setAttribute("class", "card");
+
+
+
+}
 
 //opencards
 
 function doumatch(){
 
-
-  if (opencardlist[0].firstElementChild.className===opencardlist[1].firstElementChild.className){
+if (document.getElementsByClassName('card')[clicked[0]].firstElementChild.className===document.getElementsByClassName('card')[clicked[1]].firstElementChild.className){
       console.log('you match'+clicked);
+      matched(clicked[0], clicked[1]);
+    if(match==8) Endgame();}
+else{
 
-    //document.getElementsByClassName('card open show')[0]setAttribute('class', 'card match')
-    document.getElementsByClassName('card')
-          [clicked[0]].setAttribute("class", "card match");
-          console.log("meep");
-    document.getElementsByClassName('card')
-         [clicked[1]].setAttribute("class", "card match");
-match++;
-if(match==8){
-  Endgame();
-
-
-
+      notmatched(clicked[0], clicked[1]);
 }
 
-
-
-  }
-  else{
-      console.log('you dont match ');
-      //Thread.sleep(2000);
-      document.getElementsByClassName('card')
-            [clicked[0]].setAttribute("class", "card");
-            console.log("meep");
-      document.getElementsByClassName('card')
-           [clicked[1]].setAttribute("class", "card");
-  //document.getElementsByClassName('className')[1].
-        //setAttribute.('class','card')
+clicked.pop();
+clicked.pop();
 }
-
-}
-
-  //for (var i = 0; i <opencardlist; i++) {
-      //if opencardlist[0].getElementsByClassName('card open show') === opencardlist[0].getElementsByClassName('card open show')
-
-
-//opencardlist.forEach(matchyes)
-
-//function matchyes (x){
-  //  document.getElementsByName('card')[x].setAttribute('class', 'card match') };
-
-
-
 
 
 
