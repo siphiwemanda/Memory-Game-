@@ -7,7 +7,7 @@ var cardlist = Array.from(cardcard)
 
 
 function Endgame(){
-alert("Congratulations... meep!!");
+window.setTimeout (function () {alert ("Congratulations... meep!!"); }, 1000);
 
 }
 
@@ -24,7 +24,14 @@ function listener(x, getPosition,event){
         showcard(p);
         addopencard();
 
+        /*function listener(x, getPosition){
 
+            x.addEventListener("click", function(){
+                console.log("you clicked " )
+                increment();
+                p = getPosition;
+                showcard(p);
+                addopencard();*/
 
 
         });
@@ -33,9 +40,9 @@ function listener(x, getPosition,event){
 
 function score(){
 
-  if (moves >16) document.getElementsByClassName('fa-star')[2].setAttribute("class", "fa fa-star-o");
-  if (moves >25) document.getElementsByClassName('fa-star')[1].setAttribute("class", "fa fa-star-o");
-  if (moves >50) document.getElementsByClassName('fa-star')[0].setAttribute("class", "fa fa-star-o");
+  if (moves == 17) {document.getElementsByClassName('fa-star')[2].setAttribute("class", "fa fa-star-o");}
+  if (moves == 26) {document.getElementsByClassName('fa-star')[1].setAttribute("class", "fa fa-star-o");}
+  if (moves == 35) {document.getElementsByClassName('fa-star')[0].setAttribute("class", "fa fa-star-o");}
 
 
 }
@@ -45,7 +52,7 @@ function increment(){
   console.log(moves);
   var x = document.querySelector('.moves');
   x.innerText = moves;
- //score();
+ score();
 
 }
 
@@ -79,32 +86,54 @@ function showcard(p){
 
 
 
-function matched(i, j){
+function matchedfinish(i, j){
+
+document.getElementsByClassName('card')
+      [i].setAttribute("class", "card match");
+      console.log("meep");
+document.getElementsByClassName('card')
+     [j].setAttribute("class", "card match");
+match++;
+//cardlist[i].removeEventListener('click')
+if(match==8) Endgame();
+
+}
+
+
+function matchedanimate(i, j){
 
   document.getElementsByClassName('card')
         [i].classList.add("animated", "jello");
         console.log("jiggle");
   document.getElementsByClassName('card')
        [j].classList.add("animated", "jello");
+       window.setTimeout(function(){
+matchedfinish(i, j);}, 1000);
 
-
-
-/*document.getElementsByClassName('card')
-      [i].setAttribute("class", "card match");
-      console.log("meep");
-document.getElementsByClassName('card')
-     [j].setAttribute("class", "card match");*/
-match++;
 }
 
-function notmatched(i, j){
+function notmatchedfinish(i, j){
 
-
-    document.getElementsByClassName('card')
-        [i].setAttribute("class", "card");
-        console.log("meep");
   document.getElementsByClassName('card')
-       [j].setAttribute("class", "card");
+      [i].setAttribute("class", "card");
+      console.log("meep");
+  document.getElementsByClassName('card')
+     [j].setAttribute("class", "card");
+
+
+}
+
+
+
+function notmatchedanimate(i, j){
+
+  document.getElementsByClassName('card')
+        [i].classList.add("animated", "shake");
+        console.log("jiggle");
+  document.getElementsByClassName('card')
+       [j].classList.add("animated", "shake");
+       window.setTimeout(function(){
+  notmatchedfinish(i, j);}, 1000);
 
 
 
@@ -116,11 +145,11 @@ function doumatch(){
 
 if (document.getElementsByClassName('card')[clicked[0]].firstElementChild.className===document.getElementsByClassName('card')[clicked[1]].firstElementChild.className){
       console.log('you match'+clicked);
-      matched(clicked[0], clicked[1]);
-    if(match==8) Endgame();}
+      matchedanimate(clicked[0], clicked[1]);
+    }
 else{
 
-      notmatched(clicked[0], clicked[1]);
+      notmatchedanimate(clicked[0], clicked[1]);
 }
 
 clicked.pop();
@@ -175,6 +204,9 @@ function shuffle(cardlist) {
 
     return array;
 }
+
+
+
 
 
 
