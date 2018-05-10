@@ -1,4 +1,6 @@
+
 //cardlist
+
 var cardcard = document.getElementsByClassName('card')
 var cardlist = Array.from(cardcard)
 
@@ -6,38 +8,85 @@ var cardlist = Array.from(cardcard)
 //cardlistner function
 cardlist.forEach(listener)
 var p;
+var clicked=[];
 function listener(x, getPosition,event){
 
     x.addEventListener("click", function(){
         console.log("you clicked " + getPosition)
         p = getPosition;
-        showcard(p)
+        clicked.push(p);
+        showcard(p);
+
+
+
         });
 };
+
+var opencards;
+var opencardlist;
+
+function createopencardlist(){
+
+  opencards = document.getElementsByClassName('card open show');
+  opencardlist = Array.from(opencards);
+
+
+}
 
 //showcard function
 function showcard(p){
 
+
   document.getElementsByClassName('card')
         [p].setAttribute("class", "card open show")
+
+        //var opencards = document.getElementsByClassName('card open show');
+        //var opencardlist = Array.from(opencards);
+
+createopencardlist();
+
+
+if(clicked.length==2) {
+  doumatch();
+document.getElementsByClassName('card')
+      [clicked[0]].setAttribute("class", "card");
+document.getElementsByClassName('card')
+     [clicked[1]].setAttribute("class", "card");
+clicked.pop();
+clicked.pop();
+   }
+
+
+
   };
 
 
-
 //opencards
-var opencards = document.getElementsByClassName('card open show')
-var opencardlist = Array.from(opencards)
-function doumatch(){
-  if (opencardlist[0].getElementsByClassName('card open show')=== opencardlist[1].getElementsByClassName('card open show')){
-      console.lon('you match')
-    //document.getElementsByClassName('card open show')[0]setAttribute('class', 'card match')
-  }
-  else
-      console.log('you dont match ')
 
+function doumatch(){
+
+
+  if (opencardlist[0].firstElementChild.className===opencardlist[1].firstElementChild.className){
+      console.log('you match'+clicked);
+
+    //document.getElementsByClassName('card open show')[0]setAttribute('class', 'card match')
+    document.getElementsByClassName('card')
+          [clicked[0]].setAttribute("class", "card open show");
+    document.getElementsByClassName('card')
+         [clicked[1]].setAttribute("class", "card open show");
+
+
+  }
+  else{
+      console.log('you dont match ');
+      cardlist[0].setAttribute("class", "card open show")
   //document.getElementsByClassName('className')[1].
         //setAttribute.('class','card')
 }
+
+}
+
+doumatch();
   //for (var i = 0; i <opencardlist; i++) {
       //if opencardlist[0].getElementsByClassName('card open show') === opencardlist[0].getElementsByClassName('card open show')
 
