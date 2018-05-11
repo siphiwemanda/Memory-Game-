@@ -1,7 +1,7 @@
 /*used the following functions
 sweetalert https://sweetalert.js.org/guides/ for the alert function
 animate css https://daneden.github.io/animate.css/ for the anninmation on css
-set the pointer using https://www.kirupa.com/html5/getting_mouse_click_position.htm
+
 */
 //cardlist
 var match=0;
@@ -23,15 +23,8 @@ window.setTimeout (function (){swal("Amazing!", "You have completed the game. It
 });
 ;}, 1000);
 
-
-
-
-
-
 }
 
-
-//var timerVar = setInterval(Timer, 1000);
 var timeVar;
 var totalSeconds = 0;
 
@@ -50,63 +43,23 @@ function Timer() {
 
 var p;
 var clicked=[];
-function listener(x, getPosition, event){
+cardlist.forEach(listener);
 
-    x.addEventListener("click", function(){
-        console.log("you clicked " + getPosition)
+
+
+
+function listener(x){
+
+    x.addEventListener("click", function(evt){clickedcard=evt.target;
         increment();
-        p = getPosition;
-        showcard(p);
+        showcard();
         addopencard();
-        //startCounter()
+
+
 
                 });
         }
 
-/*function startCounter() {
-    interval = setInterval( function(){
-
-    document.getElementById("timer").innerHTML = hour + ":" + minute + ":" + seconds;
-
-  })
-
-}*/
-
-
-//cardlistner function
-cardlist.forEach(listener)
-//var p;
-//var clicked=[];
-
-//function callclick(){
-//  console.log("you clicked ")
-//}
-//function listener(x, getPosition){
-
-//x.addEventListener("click", onclick);
-//x.removeEventListener("click", onclick);
-
-//x.addEventListener("click", callclick);
-    //x.addEventListener("click", function(){
-        //console.log("you clicked ")
-        //increment();
-        //p = getPosition;
-        //showcard(p);
-        //addopencard();
-      //});
-
-
-
-//}
-
-/*function onclick(getPosition, event){
-  console.log("you clicked " + getPosition)
-  increment();
-  p = getPosition;
-  showcard(p);
-  addopencard();
-
-}*/
 
 
 function score(){
@@ -137,60 +90,36 @@ function increment(){
 
 //Function to add clicked card to opencard array. If 2 elements in array call function to see if there is a match
 function addopencard(){
-clicked.push(p);
+clicked.push(clickedcard);
 if(clicked.length==2){
-doumatch();
+//doumatch(clicked[0], clicked[1]);
 
 
 }
 }
-
-//var opencards;
-//var opencardlist;
-
-//function createopencardlist(){
-
-  //opencards = document.getElementsByClassName('card open show');
-  //opencardlist = Array.from(opencards);
-
-
-//}
 
 //showcard function
-function showcard(p){
-  document.getElementsByClassName('card')
-        [p].setAttribute("class", "card open show");
+function showcard(){
+  clickedcard.setAttribute("class", "card open show");
 
       }
 
-
-
 function matchedfinish(i, j){
 
-document.getElementsByClassName('card')
-      [i].setAttribute("class", "card match");
+i.setAttribute("class", "card match");
       console.log("meep");
-document.getElementsByClassName('card')
-     [j].setAttribute("class", "card match");
+j.setAttribute("class", "card match");
 match++;
 //cardlist[i].removeEventListener('click')
 if(match==8) Endgame();
 
 }
 
-
-
-
-
-
-
 function matchedanimate(i, j){
 
-  document.getElementsByClassName('card')
-        [i].classList.add("animated", "jello");
+  i.classList.add("animated", "jello");
         console.log("jiggle");
-  document.getElementsByClassName('card')
-       [j].classList.add("animated", "jello");
+  j.classList.add("animated", "jello");
        window.setTimeout(function(){
 matchedfinish(i, j);}, 1000);
 
@@ -198,33 +127,25 @@ matchedfinish(i, j);}, 1000);
 
 function notmatchedfinish(i, j){
 
-  document.getElementsByClassName("card")
-         [i].style.backgroundColor = "";
-  document.getElementsByClassName("card")
-                [j].style.backgroundColor = "";
+  i.style.backgroundColor = "";
+  j.style.backgroundColor = "";
 
-  document.getElementsByClassName('card')
-      [i].setAttribute("class", "card");
+  i.setAttribute("class", "card");
       console.log("meep");
-  document.getElementsByClassName('card')
-     [j].setAttribute("class", "card");
+  j.setAttribute("class", "card");
 }
 
 
 
 function notmatchedanimate(i, j){
 
-  document.getElementsByClassName("card")
-         [i].style.backgroundColor = "#ff6666";
-  document.getElementsByClassName("card")
-                [j].style.backgroundColor = "#ff6666";
+  i.style.backgroundColor = "#ff6666";
+  j.style.backgroundColor = "#ff6666";
 
-  document.getElementsByClassName('card')
-        [i].classList.add("animated", "shake");
+  i.classList.add("animated", "shake");
 
         console.log("jiggle");
-  document.getElementsByClassName('card')
-       [j].classList.add("animated", "shake");
+  j.classList.add("animated", "shake");
 
 
        window.setTimeout(function(){
@@ -233,14 +154,14 @@ function notmatchedanimate(i, j){
 
 //opencards
 
-function doumatch(){
+function doumatch(i, j){
 
-if (document.getElementsByClassName('card')[clicked[0]].firstElementChild.className===document.getElementsByClassName('card')[clicked[1]].firstElementChild.className){
+if (i.firstElementChild.className===j.firstElementChild.className){
       console.log('you match'+clicked);
       matchedanimate(clicked[0], clicked[1]);
     }
 else{
-
+  console.log("not match")
       notmatchedanimate(clicked[0], clicked[1]);
 }
 
@@ -249,32 +170,6 @@ clicked.pop();
 }
 
 
-
-//set the pointer using https://www.kirupa.com/html5/getting_mouse_click_position.htm
-function getPosition(el) {
-  var xPosition = 0;
-  var yPosition = 0;
-
-  while (el) {
-    if (el.tagName == "BODY") {
-      // deal with browser quirks with body/window/document and page scroll
-      var xScrollPos = el.scrollLeft || document.documentElement.scrollLeft;
-      var yScrollPos = el.scrollTop || document.documentElement.scrollTop;
-
-      xPosition += (el.offsetLeft - xScrollPos + el.clientLeft);
-      yPosition += (el.offsetTop - yScrollPos + el.clientTop);
-    } else {
-      xPosition += (el.offsetLeft - el.scrollLeft + el.clientLeft);
-      yPosition += (el.offsetTop - el.scrollTop + el.clientTop);
-    }
-
-    el = el.offsetParent;
-  }
-  return {
-    x: xPosition,
-    y: yPosition
-  };
-}
 
 // - shuffle the list of cards using the provided "shuffle" method below
 // loop through each card and create its HTML
