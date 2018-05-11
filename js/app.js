@@ -1,36 +1,37 @@
 /*used the following functions
 sweetalert https://sweetalert.js.org/guides/ for the alert function
 animate css https://daneden.github.io/animate.css/ for the anninmation on css
-
 */
 
+//intialising game
   var match=0;
   var moves=0;
   var stars = 3
-  var cardcard = document.getElementsByClassName('card')
-  var cardlist = Array.from(cardcard)
   var timeVar;
   var totalSeconds = 0;
-
   var hour;
   var minute;
   var seconds;
 
+  var cardcard = document.getElementsByClassName('card')
+  var cardlist = Array.from(cardcard)
+
   var clicked=[];
   shuffle(cardlist)
   cardlist.forEach(listener);
-
   document.getElementsByClassName('restart')[0].addEventListener('click', reload);
 
-
-
-
+//Reloading the game when the reload button is clicked
 function reload() {
     location.reload();
     shuffle(cardlist)
 }
 
+//add event listner to every card
+function listener(x){x.addEventListener("click", onclick);}
 
+
+//stops timer,brings up an alert box and reloads the game
 function Endgame(){
 
   clearInterval(timeVar);
@@ -45,7 +46,7 @@ window.setTimeout (function (){swal("Amazing!", "You have completed the game. It
 
 }
 
-
+//Timer in hour, minutes and seconds
 function Timer() {
    ++totalSeconds;
    hour = Math.floor(totalSeconds /3600);
@@ -55,25 +56,17 @@ function Timer() {
    document.getElementById("timer").innerHTML = hour + ":" + minute + ":" + seconds;
 }
 
-
+//get clicked card and call futher functions
 function onclick(evt){
   clickedcard=evt.target;
 
       increment();
       showcard();
       addopencard();
-
 }
 
 
-function listener(x){
-
-x.addEventListener("click", onclick);
-
-}
-
-
-
+//sets the stars
 function score(){
 
   if (moves == 17) {document.getElementsByClassName('fa-star')[2].setAttribute("class", "fa fa-star-o");
@@ -84,39 +77,33 @@ function score(){
   stars--;}
 }
 
+//increases the number of moves and set's the timer upon the first move. takes moves and adds it to the HTML
 function increment(){
   moves++;
   if(moves==1){
-  timeVar = setInterval(Timer, 1000);
+  timeVar = setInterval(Timer, 1000);}
 
-  }
-
-  console.log(moves);
   var x = document.querySelector('.moves');
   x.innerText = moves;
  score();
 
 }
 
-
-
-//Function to add clicked card to opencard array. If 2 elements in array call function to see if there is a match
+//Function to add clicked card to clicked array. If 2 elements in array call function to see if there is a match
 function addopencard(){
 clicked.push(clickedcard);
 clickedcard.removeEventListener("click", onclick);
 if(clicked.length==2){
-doumatch(clicked[0], clicked[1]);
-
-
-}
+doumatch(clicked[0], clicked[1]);}
 }
 
 //showcard function
 function showcard(){
   clickedcard.setAttribute("class", "card open show");
+}
 
-      }
 
+//turns matched cards to green and if all cards matched will call Endgame
 function matchedfinish(i, j){
 
 i.setAttribute("class", "card match");
@@ -128,6 +115,8 @@ if(match==8) Endgame();
 
 }
 
+
+//if matched call animations
 function matchedanimate(i, j){
 
   i.classList.add("animated", "jello");
@@ -135,9 +124,9 @@ function matchedanimate(i, j){
   j.classList.add("animated", "jello");
        window.setTimeout(function(){
 matchedfinish(i, j);}, 1000);
-
 }
 
+//if not matched  add back the event listner, return the css to the orginal colours
 function notmatchedfinish(i, j){
 
   i.style.backgroundColor = "";
@@ -148,12 +137,10 @@ function notmatchedfinish(i, j){
   j.setAttribute("class", "card");
 i.addEventListener("click", onclick);
 j.addEventListener("click", onclick);
-
-
 }
 
 
-
+// if not matched animate and turn the css red
 function notmatchedanimate(i, j){
 
   i.style.backgroundColor = "#ff6666";
@@ -169,36 +156,20 @@ function notmatchedanimate(i, j){
   notmatchedfinish(i, j);}, 1000);
 }
 
-//opencards
 
+//check if the cards matched
 function doumatch(i, j){
 
 if (i.firstElementChild.className===j.firstElementChild.className){
-      console.log('you match'+clicked);
-      matchedanimate(clicked[0], clicked[1]);
+      matchedanimate(i, j);
     }
 else{
-  console.log("not match")
-      notmatchedanimate(clicked[0], clicked[1]);
+      notmatchedanimate(i, j);
 }
 
 clicked.pop();
 clicked.pop();
 }
-
-
-
-// - shuffle the list of cards using the provided "shuffle" method below
-// loop through each card and create its HTML
- //add each card's HTML to the page
-
-
-
-
-
-
-//reload the page
-
 
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -217,19 +188,3 @@ function shuffle(array) {
 
     return array;
 }
-
-
-
-
-
-
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
