@@ -45,20 +45,21 @@ var p;
 var clicked=[];
 cardlist.forEach(listener);
 
+function onclick(evt){
+  clickedcard=evt.target;
 
+      increment();
+      showcard();
+      addopencard();
+
+}
 
 
 function listener(x){
 
-    x.addEventListener("click", function(evt){clickedcard=evt.target;
-        increment();
-        showcard();
-        addopencard();
+x.addEventListener("click", onclick);
 
-
-
-                });
-        }
+}
 
 
 
@@ -91,8 +92,9 @@ function increment(){
 //Function to add clicked card to opencard array. If 2 elements in array call function to see if there is a match
 function addopencard(){
 clicked.push(clickedcard);
+clickedcard.removeEventListener("click", onclick);
 if(clicked.length==2){
-//doumatch(clicked[0], clicked[1]);
+doumatch(clicked[0], clicked[1]);
 
 
 }
@@ -133,6 +135,10 @@ function notmatchedfinish(i, j){
   i.setAttribute("class", "card");
       console.log("meep");
   j.setAttribute("class", "card");
+i.addEventListener("click", onclick);
+j.addEventListener("click", onclick);
+
+
 }
 
 
