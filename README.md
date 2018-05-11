@@ -12,8 +12,8 @@ A working example of the game can be found here: https://siphiwemanda.github.io/
 
 
 The game utilises the following
-sweetalert https://sweetalert.js.org/guides/ for the alert function
-animate css https://daneden.github.io/animate.css/ for the animation on css
+* Sweetalert https://sweetalert.js.org/guides/ for the alert function
+* Animate css https://daneden.github.io/animate.css/ for the animation on css
 
 The game requires the following files:
 * index.html
