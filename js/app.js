@@ -1,3 +1,10 @@
+/*used the following functions
+sweetalert https://sweetalert.js.org/guides/ for the alert function
+animate css https://daneden.github.io/animate.css/ for the anninmation on css
+
+*/
+
+
 
 //cardlist
 var match=0;
@@ -10,7 +17,11 @@ function Endgame(){
 //window.setTimeout (function () {alert ("Congratulations, you've matched the game. you get" +  'stars  ' + '  time it took'); }, 1000);
 window.setTimeout (function (){swal("Good job!", "You have completed the game. You finished in 5 minuets and got two stars", "success", {
   button: "Play Again?",
-});}, 1000);}
+})
+.then((value) => {
+  location.reload();
+});
+;}, 1000);}
 
 
 
@@ -79,7 +90,7 @@ function score(){
 
 function increment(){
   moves++;
-  if(moves==1){setInterval(Timer, 1000)};
+  //if(moves==1){setInterval(Timer, 1000)};
   console.log(moves);
   var x = document.querySelector('.moves');
   x.innerText = moves;
