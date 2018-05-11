@@ -11,7 +11,7 @@ var cardlist = Array.from(cardcard)
 
 
 function Endgame(){
-window.setTimeout (function (){swal("Good job!", "You have completed the game. You finished in 5 minuets and got two stars", "success", {
+window.setTimeout (function (){swal("Good job!", "You have completed the game. You finished in 5 minuets and got " + stars + " stars", "success", {
   button: "Play Again?",
 })
 .then((value) => {
@@ -71,15 +71,16 @@ function listener(x, getPosition,event){
 
         });
 }
-
+var stars = 3
 
 function score(){
 
-  if (moves == 17) {document.getElementsByClassName('fa-star')[2].setAttribute("class", "fa fa-star-o");}
-  if (moves == 26) {document.getElementsByClassName('fa-star')[1].setAttribute("class", "fa fa-star-o");}
-  if (moves == 35) {document.getElementsByClassName('fa-star')[0].setAttribute("class", "fa fa-star-o");}
-
-
+  if (moves == 17) {document.getElementsByClassName('fa-star')[2].setAttribute("class", "fa fa-star-o");
+  stars--;}
+  if (moves == 26) {document.getElementsByClassName('fa-star')[1].setAttribute("class", "fa fa-star-o");
+  stars--;}
+  if (moves == 35) {document.getElementsByClassName('fa-star')[0].setAttribute("class", "fa fa-star-o");
+  stars--;}
 }
 
 function increment(){
@@ -183,9 +184,6 @@ function notmatchedanimate(i, j){
 
        window.setTimeout(function(){
   notmatchedfinish(i, j);}, 1000);
-
-
-
 }
 
 //opencards
