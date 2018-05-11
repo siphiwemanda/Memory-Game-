@@ -1,11 +1,8 @@
 /*used the following functions
 sweetalert https://sweetalert.js.org/guides/ for the alert function
 animate css https://daneden.github.io/animate.css/ for the anninmation on css
-
+set the pointer using https://www.kirupa.com/html5/getting_mouse_click_position.htm
 */
-
-
-
 //cardlist
 var match=0;
 var moves=0;
@@ -14,7 +11,6 @@ var cardlist = Array.from(cardcard)
 
 
 function Endgame(){
-//window.setTimeout (function () {alert ("Congratulations, you've matched the game. you get" +  'stars  ' + '  time it took'); }, 1000);
 window.setTimeout (function (){swal("Good job!", "You have completed the game. You finished in 5 minuets and got two stars", "success", {
   button: "Play Again?",
 })
@@ -22,8 +18,6 @@ window.setTimeout (function (){swal("Good job!", "You have completed the game. Y
   location.reload();
 });
 ;}, 1000);}
-
-
 
 
 var timerVar = setInterval(Timer, 1000);
@@ -158,24 +152,35 @@ matchedfinish(i, j);}, 1000);
 
 function notmatchedfinish(i, j){
 
+  document.getElementsByClassName("card")
+         [i].style.backgroundColor = "";
+  document.getElementsByClassName("card")
+                [j].style.backgroundColor = "";
+
   document.getElementsByClassName('card')
       [i].setAttribute("class", "card");
       console.log("meep");
   document.getElementsByClassName('card')
      [j].setAttribute("class", "card");
-
-
 }
 
 
 
 function notmatchedanimate(i, j){
 
+  document.getElementsByClassName("card")
+         [i].style.backgroundColor = "#ff9999";
+  document.getElementsByClassName("card")
+                [j].style.backgroundColor = "#ff9999";
+
   document.getElementsByClassName('card')
         [i].classList.add("animated", "shake");
+
         console.log("jiggle");
   document.getElementsByClassName('card')
        [j].classList.add("animated", "shake");
+
+
        window.setTimeout(function(){
   notmatchedfinish(i, j);}, 1000);
 
