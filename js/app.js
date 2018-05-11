@@ -82,7 +82,9 @@ doumatch();
 //showcard function
 function showcard(p){
   document.getElementsByClassName('card')
-        [p].setAttribute("class", "card open show");}
+        [p].setAttribute("class", "card open show");
+
+      }
 
 
 
@@ -188,6 +190,27 @@ function getPosition(el) {
 // loop through each card and create its HTML
  //add each card's HTML to the page
 
+
+var timerVar = setInterval(countTimer, 1000);
+var totalSeconds = 0;
+function countTimer() {
+   ++totalSeconds;
+   var hour = Math.floor(totalSeconds /3600);
+   var minute = Math.floor((totalSeconds - hour*3600)/60);
+   var seconds = totalSeconds - (hour*3600 + minute*60);
+
+   document.getElementById("timer").innerHTML = hour + ":" + minute + ":" + seconds;
+}
+
+
+
+
+//reload the page
+document.getElementsByClassName('restart')[0].addEventListener('click', reload);
+function reload() {
+    location.reload();
+    console.log('reload')
+}
 
 
 // Shuffle function from http://stackoverflow.com/a/2450976
