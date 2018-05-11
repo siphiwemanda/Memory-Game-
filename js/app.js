@@ -7,9 +7,34 @@ var cardlist = Array.from(cardcard)
 
 
 function Endgame(){
-window.setTimeout (function () {alert ("Congratulations... meep!!"); }, 1000);
+window.setTimeout (function () {alert ("Congratulations... meep!!" + 'number or stats' + ' time it took'); }, 1000);
 
 }
+
+
+var timerVar = setInterval(Timer, 1000);
+var totalSeconds = 0;
+
+function Timer() {
+   ++totalSeconds;
+   var hour = Math.floor(totalSeconds /3600);
+   var minute = Math.floor((totalSeconds - hour*3600)/60);
+   var seconds = totalSeconds - (hour*3600 + minute*60);
+
+
+  document.getElementById("timer").innerHTML = hour + ":" + minute + ":" + seconds;
+
+}
+
+/*function startCounter() {
+    interval = setInterval( function(){
+
+    document.getElementById("timer").innerHTML = hour + ":" + minute + ":" + seconds;
+
+  })
+
+}*/
+
 
 //cardlistner function
 cardlist.forEach(listener)
@@ -23,6 +48,8 @@ function listener(x, getPosition,event){
         p = getPosition;
         showcard(p);
         addopencard();
+        startCounter()
+
 
         /*function listener(x, getPosition){
 
@@ -49,6 +76,7 @@ function score(){
 
 function increment(){
   moves++;
+  if(moves==1){Timer};
   console.log(moves);
   var x = document.querySelector('.moves');
   x.innerText = moves;
@@ -191,16 +219,6 @@ function getPosition(el) {
  //add each card's HTML to the page
 
 
-var timerVar = setInterval(countTimer, 1000);
-var totalSeconds = 0;
-function countTimer() {
-   ++totalSeconds;
-   var hour = Math.floor(totalSeconds /3600);
-   var minute = Math.floor((totalSeconds - hour*3600)/60);
-   var seconds = totalSeconds - (hour*3600 + minute*60);
-
-   document.getElementById("timer").innerHTML = hour + ":" + minute + ":" + seconds;
-}
 
 
 
