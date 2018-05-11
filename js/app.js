@@ -12,28 +12,56 @@ var cardlist = Array.from(cardcard)
 
 
 function Endgame(){
-window.setTimeout (function (){swal("Amazing!", "You have completed the game. It took you  " + moves + "  moves. You finished in " + timerVar + " seconds and got " + stars + " stars", "success", {
+
+  clearInterval(timeVar);
+var siphiwe=document.getElementById("timer").innerHTML;
+window.setTimeout (function (){swal("Amazing!", "You have completed the game. It took you  " + moves + "  moves. You finished in " +  minute + " minutes " + seconds + " seconds" + " and got " + stars + " stars", "success", {
   button: "Play Again?",
 })
 .then((value) => {
   location.reload();
 });
-;}, 1000);}
+;}, 1000);
 
 
-var timerVar = setInterval(Timer, 1000);
+
+
+
+
+}
+
+
+//var timerVar = setInterval(Timer, 1000);
+var timeVar;
 var totalSeconds = 0;
+
+var hour;
+var minute;
+var seconds;
 
 function Timer() {
    ++totalSeconds;
-   var hour = Math.floor(totalSeconds /3600);
-   var minute = Math.floor((totalSeconds - hour*3600)/60);
-   var seconds = totalSeconds - (hour*3600 + minute*60);
+   hour = Math.floor(totalSeconds /3600);
+   minute = Math.floor((totalSeconds - hour*3600)/60);
+   seconds = totalSeconds - (hour*3600 + minute*60);
 
-
-  document.getElementById("timer").innerHTML = hour + ":" + minute + ":" + seconds;
-
+   document.getElementById("timer").innerHTML = hour + ":" + minute + ":" + seconds;
 }
+
+var p;
+var clicked=[];
+function listener(x, getPosition, event){
+
+    x.addEventListener("click", function(){
+        console.log("you clicked " + getPosition)
+        increment();
+        p = getPosition;
+        showcard(p);
+        addopencard();
+        //startCounter()
+
+                });
+        }
 
 /*function startCounter() {
     interval = setInterval( function(){
@@ -47,31 +75,38 @@ function Timer() {
 
 //cardlistner function
 cardlist.forEach(listener)
-var p;
-var clicked=[];
-function listener(x, getPosition,event){
+//var p;
+//var clicked=[];
 
-    x.addEventListener("click", function(){
-        console.log("you clicked " + getPosition)
-        increment();
-        p = getPosition;
-        showcard(p);
-        addopencard();
-        startCounter()
+//function callclick(){
+//  console.log("you clicked ")
+//}
+//function listener(x, getPosition){
 
+//x.addEventListener("click", onclick);
+//x.removeEventListener("click", onclick);
 
-        /*function listener(x, getPosition){
-
-            x.addEventListener("click", function(){
-                console.log("you clicked " )
-                increment();
-                p = getPosition;
-                showcard(p);
-                addopencard();*/
+//x.addEventListener("click", callclick);
+    //x.addEventListener("click", function(){
+        //console.log("you clicked ")
+        //increment();
+        //p = getPosition;
+        //showcard(p);
+        //addopencard();
+      //});
 
 
-        });
-}
+
+//}
+
+/*function onclick(getPosition, event){
+  console.log("you clicked " + getPosition)
+  increment();
+  p = getPosition;
+  showcard(p);
+  addopencard();
+
+}*/
 
 
 function score(){
@@ -86,7 +121,11 @@ function score(){
 
 function increment(){
   moves++;
-  //if(moves==1){setInterval(Timer, 1000)};
+  if(moves==1){
+  timeVar = setInterval(Timer, 1000);
+
+  }
+
   console.log(moves);
   var x = document.querySelector('.moves');
   x.innerText = moves;
@@ -140,6 +179,11 @@ if(match==8) Endgame();
 }
 
 
+
+
+
+
+
 function matchedanimate(i, j){
 
   document.getElementsByClassName('card')
@@ -171,9 +215,9 @@ function notmatchedfinish(i, j){
 function notmatchedanimate(i, j){
 
   document.getElementsByClassName("card")
-         [i].style.backgroundColor = "#ff4c4c";
+         [i].style.backgroundColor = "#ff6666";
   document.getElementsByClassName("card")
-                [j].style.backgroundColor = "#ff4c4c";
+                [j].style.backgroundColor = "#ff6666";
 
   document.getElementsByClassName('card')
         [i].classList.add("animated", "shake");
