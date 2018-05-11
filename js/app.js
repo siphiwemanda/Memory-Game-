@@ -7,9 +7,12 @@ var cardlist = Array.from(cardcard)
 
 
 function Endgame(){
-window.setTimeout (function () {alert ("Congratulations... meep!!" + 'number or stats' + ' time it took'); }, 1000);
+//window.setTimeout (function () {alert ("Congratulations, you've matched the game. you get" +  'stars  ' + '  time it took'); }, 1000);
+window.setTimeout (function (){swal("Good job!", "You have completed the game. You finished in 5 minuets and got two stars", "success", {
+  button: "Play Again?",
+});}, 1000);}
 
-}
+
 
 
 var timerVar = setInterval(Timer, 1000);
@@ -76,7 +79,7 @@ function score(){
 
 function increment(){
   moves++;
-  if(moves==1){Timer};
+  if(moves==1){setInterval(Timer, 1000)};
   console.log(moves);
   var x = document.querySelector('.moves');
   x.innerText = moves;

@@ -117,17 +117,7 @@ h1 {
   padding: 0;
   display: inline-block;
   margin: 0 5px 0 0;
-
-
-}
-
-#time {
-  list-style: none;
-  display: inline-block;
-  margin: 0;
-  padding: 0;
-  display: inline-block;
-  margin: 0 5px 0 0;
+  color: red;
 
 
 }
