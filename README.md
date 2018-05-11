@@ -1,3 +1,10 @@
+The Memmory game is a project for the Udacity Frount End NanoDegree
+
+It is a simple flipping game where the payer has to flip a card and try and match it to another card in the grid.
+The player recives three stars for completing the game in the least amount of moves, the stars then decreccess depending on how long it took the player to finish the game
+
+when the game ends the player is informed of how long it took to complete the game, given the star rating an the number of moves it took them to complete it 
+
 # Memory Game Project
 
 ## Table of Contents

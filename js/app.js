@@ -6,12 +6,13 @@ set the pointer using https://www.kirupa.com/html5/getting_mouse_click_position.
 //cardlist
 var match=0;
 var moves=0;
+var stars = 3
 var cardcard = document.getElementsByClassName('card')
 var cardlist = Array.from(cardcard)
 
 
 function Endgame(){
-window.setTimeout (function (){swal("Good job!", "You have completed the game. You finished in 5 minuets and got " + stars + " stars", "success", {
+window.setTimeout (function (){swal("Amazing!", "You have completed the game. It took you  " + moves + "  moves. You finished in " + timerVar + " seconds and got " + stars + " stars", "success", {
   button: "Play Again?",
 })
 .then((value) => {
@@ -71,7 +72,7 @@ function listener(x, getPosition,event){
 
         });
 }
-var stars = 3
+
 
 function score(){
 
@@ -170,9 +171,9 @@ function notmatchedfinish(i, j){
 function notmatchedanimate(i, j){
 
   document.getElementsByClassName("card")
-         [i].style.backgroundColor = "#ff9999";
+         [i].style.backgroundColor = "#ff4c4c";
   document.getElementsByClassName("card")
-                [j].style.backgroundColor = "#ff9999";
+                [j].style.backgroundColor = "#ff4c4c";
 
   document.getElementsByClassName('card')
         [i].classList.add("animated", "shake");
