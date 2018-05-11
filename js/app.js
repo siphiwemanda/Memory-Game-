@@ -3,12 +3,32 @@ sweetalert https://sweetalert.js.org/guides/ for the alert function
 animate css https://daneden.github.io/animate.css/ for the anninmation on css
 
 */
-//cardlist
-var match=0;
-var moves=0;
-var stars = 3
-var cardcard = document.getElementsByClassName('card')
-var cardlist = Array.from(cardcard)
+
+  var match=0;
+  var moves=0;
+  var stars = 3
+  var cardcard = document.getElementsByClassName('card')
+  var cardlist = Array.from(cardcard)
+  var timeVar;
+  var totalSeconds = 0;
+
+  var hour;
+  var minute;
+  var seconds;
+
+  var clicked=[];
+  shuffle(cardlist)
+  cardlist.forEach(listener);
+
+  document.getElementsByClassName('restart')[0].addEventListener('click', reload);
+
+
+
+
+function reload() {
+    location.reload();
+    shuffle(cardlist)
+}
 
 
 function Endgame(){
@@ -25,12 +45,6 @@ window.setTimeout (function (){swal("Amazing!", "You have completed the game. It
 
 }
 
-var timeVar;
-var totalSeconds = 0;
-
-var hour;
-var minute;
-var seconds;
 
 function Timer() {
    ++totalSeconds;
@@ -41,9 +55,6 @@ function Timer() {
    document.getElementById("timer").innerHTML = hour + ":" + minute + ":" + seconds;
 }
 
-var p;
-var clicked=[];
-cardlist.forEach(listener);
 
 function onclick(evt){
   clickedcard=evt.target;
@@ -187,23 +198,21 @@ clicked.pop();
 
 
 //reload the page
-document.getElementsByClassName('restart')[0].addEventListener('click', reload);
-function reload() {
-    location.reload();
-    console.log('reload')
-}
+
 
 
 // Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(cardlist) {
-    var currentIndex = cardlist.length, temporaryValue, randomIndex;
+function shuffle(array) {
+    var currentIndex = array.length
+    var temporaryValue
+    var randomIndex;
 
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
+        temporaryValue = array[currentIndex].firstElementChild.className;
+        array[currentIndex].firstElementChild.className = array[randomIndex].firstElementChild.className;
+        array[randomIndex].firstElementChild.className = temporaryValue;
     }
 
     return array;
