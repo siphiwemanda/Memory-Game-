@@ -148,16 +148,38 @@ h1 {
 
 
 /* for smaller screens */
-@media only screen and (max-width: 320px){
+@media only screen and (max-width: 480px){
   .deck .card{
     width: 60px;
-    height: 75px;
+    height: 60px;
   }
 
   .deck {
-    width: 320px;
+    width: 350px;
     display: flex;
     min-height: 400px;
+    padding: 32px;
+   }
+
+   .score-panel{
+      text-align: center;
+   }
+   .score-panel .restart{
+     float: center;
+   }
+}
+
+
+@media only screen and (max-width: 320px){
+  .deck .card{
+    width: 60px;
+    height: 60px;
+  }
+
+  .deck {
+    width: 315px;
+    display: flex;
+    min-height: 320px;
     padding: 32px;
    }
 
