@@ -24,7 +24,7 @@ The game requires the following files:
 
 # How to play
 The game starts when you click the fist card.
-The card will flip over and reviel the picture behind it.
-Click on any other card on the grid, it will flip over and revile the picture behind it
-if the two cards match they will stay open
-keep playing until you have matched all the cards!
+The card will flip over and reveal the picture behind it.
+Click on any other open card on the grid, it will flip over and reveal the picture behind it.
+If the two cards match they will stay open.
+Keep playing until you have matched all the cards!
