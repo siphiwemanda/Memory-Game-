@@ -35,10 +35,11 @@ function listener(x){x.addEventListener("click", onclick);}
 function Endgame(){
 
   clearInterval(timeVar);
-var siphiwe=document.getElementById("timer").innerHTML;
-window.setTimeout (function (){swal("Amazing!", "You have completed the game. It took you  " + moves + "  moves. You finished in " +  minute + " minutes " + seconds + " seconds" + " and got " + stars + " stars", "success", {
-  button: "Play Again?",
-})
+
+window.setTimeout (function (){swal("Amazing!", "You have completed the game. It took you  "
+                              + moves + "  moves. You finished in " +  minute + " minutes "
+                              + seconds + " seconds" + " and got " + stars + " stars", "success", {
+                              button: "Play Again?",})
 .then((value) => {
   location.reload();
 });
@@ -69,11 +70,11 @@ function onclick(evt){
 //sets the stars
 function score(){
 
-  if (moves == 17) {document.getElementsByClassName('fa-star')[2].setAttribute("class", "fa fa-star-o");
+  if (moves == 26) {document.getElementsByClassName('fa-star')[2].setAttribute("class", "fa fa-star-o");
   stars--;}
-  if (moves == 26) {document.getElementsByClassName('fa-star')[1].setAttribute("class", "fa fa-star-o");
+  if (moves == 36) {document.getElementsByClassName('fa-star')[1].setAttribute("class", "fa fa-star-o");
   stars--;}
-  if (moves == 35) {document.getElementsByClassName('fa-star')[0].setAttribute("class", "fa fa-star-o");
+  if (moves == 46) {document.getElementsByClassName('fa-star')[0].setAttribute("class", "fa fa-star-o");
   stars--;}
 }
 
@@ -91,9 +92,9 @@ function increment(){
 
 //Function to add clicked card to clicked array. If 2 elements in array call function to see if there is a match
 function addopencard(){
-clicked.push(clickedcard);
-clickedcard.removeEventListener("click", onclick);
-if(clicked.length==2){
+  clicked.push(clickedcard);
+  clickedcard.removeEventListener("click", onclick);
+  if(clicked.length==2){
 doumatch(clicked[0], clicked[1]);}
 }
 
