@@ -22,7 +22,7 @@ The game requires the following files:
 * css/animate.css
 * img/geometry2.png
 
-#How to play
+# How to play
 The game starts when you click the fist card.
 The card will flip over and reviel the picture behind it.
 Click on any other card on the grid, it will flip over and revile the picture behind it

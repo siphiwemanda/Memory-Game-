@@ -119,3 +119,52 @@ h1 {
   margin: 0 5px 0 0;
   color: red;
 }
+
+
+
+
+/* medium screens */
+@media only screen and (max-width: 800px){
+  .deck .card{
+    width: 90px;
+    height: 90px;
+}
+
+  .deck {
+    width: 450px;
+    display: flex;
+    min-height: 550px;
+    padding: 32px;
+    border-radius: 20px;
+    }
+    .score-panel{
+       text-align: center;
+    }
+    .score-panel .restart{
+      float: center;
+    }
+}
+
+
+
+/* for smaller screens */
+@media only screen and (max-width: 320px){
+  .deck .card{
+    width: 60px;
+    height: 75px;
+  }
+
+  .deck {
+    width: 320px;
+    display: flex;
+    min-height: 400px;
+    padding: 32px;
+   }
+
+   .score-panel{
+      text-align: center;
+   }
+   .score-panel .restart{
+     float: center;
+   }
+}
