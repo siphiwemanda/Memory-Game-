@@ -1,4 +1,6 @@
-* Notes by reviewer
+# Notes by reviewer
+
+
 Good job fixing the issues that were in your project as highlighted by the previous reviewer.
 Just a minor issue remains with the star rating, however, you can easily fix it as you've done really well already.
 Keep up the good work in your future projects and keep improving your skills.
